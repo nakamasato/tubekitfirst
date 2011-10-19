@@ -5,6 +5,8 @@
   $tablename = "TRY6";
 
 
+
+
 $sql = "SHOW TABLES FROM backbone";
 $result = mysql_query($sql);
 echo "which table do you want to use as keyword? Select the number.\n";
