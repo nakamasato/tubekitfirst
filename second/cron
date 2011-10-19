@@ -1,6 +1,0 @@
-SHELL=/bin/bash
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
-
-50 21 * * * php /var/www/TubeKit/second/collectOnce.php
-0 22 * * * php /var/www/TubeKit/second/collectEverytime.php
-
