@@ -65,7 +65,10 @@ for($j=0;$j<$size;$j++){
 
 	if (!empty($hash[$k])){
 	   echo($k." is a stopword in the old table.\n");
+	   continue;
+	   echo("after continue\n");
 	}
+	echo($j."\n");
 }
 echo"\n";
 for($i=0;$i<$size;$i++){

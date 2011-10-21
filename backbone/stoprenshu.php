@@ -1,18 +1,8 @@
 <?php
 
+require_once("stop.php");
 
-
-$contents = @file_get_contents('stopword.txt');
-$contents = explode(' ',$contents);
-
-$size = count($contents);
-for($i = 0; $i < $size; $i++){
-$contents[$i] = trim($contents[$i]);
-$key = $contents[$i];
-$hash[$key]='1';
-
-}
-
+var_dump($hash);
 for($i=0;$i<5;$i++){
 $input1 =  fgets(STDIN,4096);
 $input1 = trim($input1);
