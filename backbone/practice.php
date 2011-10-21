@@ -5,7 +5,7 @@
   $tablename = "TRY6";
 
 
-
+//input method
 
 $sql = "SHOW TABLES FROM backbone";
 $result = mysql_query($sql);
@@ -19,20 +19,18 @@ while ($row = mysql_fetch_row($result)) {
 }
 
 $input = (int) fgets(STDIN,4096);
+echo($table[$input]. "\n"); 
 
-$num = (int) $input;
-
-echo($table[$num]. "\n"); 
-
-
-
-/*
-  $select = "show tables;"
-  $vresult = mysql_query($select) or die(" ". mysql_error());	
+$v = " music";
+  $select = "select * from $table[$input] where keyword ='$v'";
+  $vresult = mysql_query($select) or die(" ". mysql_error());
+  $num_rows = mysql_num_rows($vresult);
+  echo	$num_rows;
   while($line =  mysql_fetch_array ($vresult, MYSQL_ASSOC)){
-  echo $line;
+  echo $line['name'];
+  $a = fgets(STDIN,4096);	
   }
-
+/*
   $query = "select * from $tablename";
   $vresult = mysql_query($query) or die(" ". mysql_error());
   $the_number = 0;
