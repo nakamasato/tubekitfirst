@@ -15,7 +15,7 @@
    $table = array();
    while ( $row =mysql_fetch_row($result)){
    	 if(endsWith($row[0],"week100")){
-	   //		echo($number." : ". $row[0]."\n");
+      		echo($number." : ". $row[0]."\n");
 		$table[$number] = $row[0];   
    		$number++;
 	 }
@@ -23,81 +23,6 @@
 
 
 
-for($j=0; $j < $number; $j++){
-  $query = "select video_id, category from $table[$j]";
-  $vresult = mysql_query($query) or die(" ". mysql_error());
-  $i = 1;
-  $num = 0;
-  $numbertable[$j][$num] = 1;
-  while($line = mysql_fetch_array($vresult, MYSQL_ASSOC)){
-    $cat = $line['category'];
-    $cat = $categoryinverse[$cat];
-    $data[$j][$i] = array($line['video_id'], $cat );   
-    if($num == $cat - 1){
-      $num = $cat;  $numbertable[$j][$num] = $i; 
-    }else if($num == $cat - 2){
-      $numbertable[$j][$num+1] = $i;$num = $cat;$numbertable[$j][$num] = $i;
-    }else if($num == $cat - 3){
-      $numbertable[$j][$num+1] = $i;$numbertable[$j][$num+2] = $i; $num = $cat; $numbertable[$j][$num] = $i;
-    }
-    $i++;
-  }
-  $size[$j] = $i-1;
-  $numbertable[$j][$num+1] = $i;
-}
-
-
-
-for($i=0;$i < $number-1;$i++){
-  $j=$i+1;
-  echo("this is comparison between ".$table[$i]." and ".$table[$j]." .\n");
-for($k=0; $k < 15; $k++){
-  switch($k){
-  case 6:
-  case 9:
-  case 11:
-  case 12: break;
-  case 0:
-  case 1:
-  case 2:
-  case 3:
-  case 4:
-  case 5:
-  case 7:
-  case 8:
-  case 10:
-  case 13:
-  case 14:
-    for($l=$numbertable[$i][$k]; $l < $numbertable[$i][$k+1]; $l++){
-      for($m=$numbertable[$j][$k]; $m < $numbertable[$j][$k+1]; $m++){
-	if($data[$i][$l][0] == $data[$j][$m][0]){
-	  $both[$i][$j][$k]++;
-	}
-      }
-    }
-    echo("In the ".$category[$k].", both have ".$both[$i][$j][$k]." common videos.\n");
-      }
-}
-}
-
-
-
-
-
-
-for($k=0;$k<15;$k++){
-  for($i=0;$i<$number-1;$i++){
-    $j=$i+1;
-$b[$k]+=$both[$i][$j][$k];
-//echo($i." and ".$j."category:".$category[$k]."both have ".$both[$i][$j][$k]." videos\n");
-  }
-  echo($category[$k].":".$b[$k]/($number-1.0)."\n");
-}
-
-
-
-
-/*
 
 
 
@@ -166,6 +91,6 @@ for($i=0; $i < 15; $i++){
   echo("In the ".$category[$i].", both have ".$both[$i]." common videos.\n");
   }
 }
-*/
+
 
 ?>

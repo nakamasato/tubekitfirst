@@ -2,18 +2,15 @@
    require_once("config.php");
    require_once("../".$mpdirectory."/rss_fetch.inc");
    require_once("parseRSS.php");
-require_once("endwith.php");
 
    $mysql = "show tables from backbone";
    $result = mysql_query($mysql);
    $number = 0;
    $table = array();
    while ( $row =mysql_fetch_row($result)){
-     if(endsWith($row[0],"vinfoweek40")){
-       echo($number." : ". $row[0]."\n");
-       $table[$number] = $row[0];
-       $number++;
-     }
+   echo ($number.": {$row[0]}\n");
+   $table[$number] = $row[0];
+   $number++;
    }
 
    echo "select a table.\n";
@@ -21,12 +18,12 @@ require_once("endwith.php");
    echo "select a table.\n";
    $input2 = (int) fgets(STDIN,4096);
 
-   $query = "select distinct videoID from $table[$input]";
+   $query = "select distinct keyword from $table[$input]";
    $vresult = mysql_query($query) or die(" ". mysql_error());
    $i=0;
    while($line = mysql_fetch_array($vresult, MYSQL_ASSOC)){
-   $videoid[$i] = $line['videoID'];
-   $video = $line['videoID'];
+   $videoid[$i] = $line['keyword'];
+   $video = $line['keyword'];
    $videoid[$i] = strtolower($videoid[$i]);
    $video = strtolower($video);
    $switch[$video] = "1";
@@ -34,12 +31,12 @@ require_once("endwith.php");
    }
    $size = $i;
 
-   $query = "select distinct videoID from $table[$input2]";
+   $query = "select distinct keyword from $table[$input2]";
    $vresult = mysql_query($query) or die(" ". mysql_error());
    $j=0;
    while($line = mysql_fetch_array($vresult, MYSQL_ASSOC)){
-   $videoid2[$j] = $line['videoID'];
-   $video = $line['videoID'];
+   $videoid2[$j] = $line['keyword'];
+   $video = $line['keyword'];
    $videoid2[$j] = strtolower($videoid2[$j]);
    $video = strtolower($video);
    $switch2[$video] = "1";
@@ -61,9 +58,9 @@ $both=0;
 
 	    }		
   }
-echo("the latter has ".$size2."videos\n");
-echo("only the former has ".$former."videos\n");
-echo("both has ".$both."videos\n");
+echo("the latter has ".$size2."words\n");
+echo("only the former has ".$former."words\n");
+echo("both has ".$both."words\n");
 
 
 
@@ -81,9 +78,9 @@ $both=0;
 	    }		
   }
 
-echo("the former has ".$size."videos\n");
-echo("only the latter has ".$latter."videos\n");
-echo("both has ".$both."videos\n");
+echo("the former has ".$size."words\n");
+echo("only the latter has ".$latter."words\n");
+echo("both has ".$both."words\n");
 
 
 
